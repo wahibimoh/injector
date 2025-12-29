@@ -9,14 +9,12 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 @CapacitorPlugin(name = "Injector")
 public class InjectorPlugin extends Plugin {
 
-    private Injector implementation = new Injector();
-
-    @PluginMethod
-    public void echo(PluginCall call) {
-        String value = call.getString("value");
-
-        JSObject ret = new JSObject();
-        ret.put("value", implementation.echo(value));
-        call.resolve(ret);
+    @Override
+    public void load() {
+        String script = getConfig().getString("android");
+        if(script != null && !script.isEmpty()) {
+            //inject script into webview
+            getBridge().getWebView().evaluateJavascript(script, null);
+        }
     }
 }

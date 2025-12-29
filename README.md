@@ -1,6 +1,6 @@
 # injector
 
-inject js on app start up
+capacitor plugin to inject js on app start up
 
 ## Install
 
@@ -10,28 +10,27 @@ npx cap sync
 ```
 
 ## API
+In `capacitor.config.json`:
 
+```json
+{
+  "plugins": {
+    "Injector": {
+      "ios": 'some js code for ios',
+      "android": 'some js code for android'
+    }
+  }
+}
+```
 <docgen-index>
 
-* [`echo(...)`](#echo)
+
 
 </docgen-index>
 
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
-### echo(...)
 
-```typescript
-echo(options: { value: string; }) => Promise<{ value: string; }>
-```
-
-| Param         | Type                            |
-| ------------- | ------------------------------- |
-| **`options`** | <code>{ value: string; }</code> |
-
-**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
-
---------------------
 
 </docgen-api>

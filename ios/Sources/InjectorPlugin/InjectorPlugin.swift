@@ -9,15 +9,12 @@ import Capacitor
 public class InjectorPlugin: CAPPlugin, CAPBridgedPlugin {
     public let identifier = "InjectorPlugin"
     public let jsName = "Injector"
-    public let pluginMethods: [CAPPluginMethod] = [
-        CAPPluginMethod(name: "echo", returnType: CAPPluginReturnPromise)
-    ]
-    private let implementation = Injector()
+    public let pluginMethods: [CAPPluginMethod] = []
 
-    @objc func echo(_ call: CAPPluginCall) {
-        let value = call.getString("value") ?? ""
-        call.resolve([
-            "value": implementation.echo(value)
-        ])
+    override public func load() {
+        if let script = getConfig().getString("ios") {
+            //inject script to webview
+            self.bridge?.webView?.evaluateJavaScript(script, completionHandler: nil)
+        }
     }
 }
