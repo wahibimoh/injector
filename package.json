@@ -13,7 +13,7 @@
     "ios/Sources",
     "ios/Tests",
     "Package.swift",
-    "Injector.podspec"
+    "WahibimohInjector.podspec"
   ],
   "author": "wahibimoh",
   "license": "MIT",
