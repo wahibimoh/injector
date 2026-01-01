@@ -2,11 +2,11 @@
 import PackageDescription
 
 let package = Package(
-    name: "Injector",
+    name: "WahibimohInjector",
     platforms: [.iOS(.v14)],
     products: [
         .library(
-            name: "Injector",
+            name: "WahibimohInjector",
             targets: ["InjectorPlugin"])
     ],
     dependencies: [
