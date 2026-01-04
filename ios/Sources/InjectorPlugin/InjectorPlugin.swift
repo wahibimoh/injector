@@ -1,5 +1,6 @@
 import Foundation
 import Capacitor
+import WebKit
 
 /**
  * Please read the Capacitor iOS Plugin Development Guide
@@ -12,9 +13,13 @@ public class InjectorPlugin: CAPPlugin, CAPBridgedPlugin {
     public let pluginMethods: [CAPPluginMethod] = []
 
     override public func load() {
-        if let script = getConfig().getString("ios") {
-            //inject script to webview
-            self.bridge?.webView?.evaluateJavaScript(script, completionHandler: nil)
+        if let script = getConfig().getString("ios"), let webView = self.bridge?.webView {
+            let userScript = WKUserScript(
+                source: script,
+                injectionTime: .atDocumentEnd,
+                forMainFrameOnly: true
+            )
+            webView.configuration.userContentController.addUserScript(userScript)
         }
     }
 }
