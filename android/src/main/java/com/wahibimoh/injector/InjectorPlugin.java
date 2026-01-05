@@ -3,6 +3,10 @@ package com.wahibimoh.injector;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.annotation.CapacitorPlugin;
 
+import androidx.webkit.WebViewCompat;
+import androidx.webkit.WebViewFeature;
+import java.util.Collections;
+
 @CapacitorPlugin(name = "Injector")
 public class InjectorPlugin extends Plugin {
 
@@ -11,9 +15,9 @@ public class InjectorPlugin extends Plugin {
         final String scriptToInject = getConfig().getString("android");
 
         if (scriptToInject != null && !scriptToInject.isEmpty()) {
-            new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
-                getBridge().getWebView().evaluateJavascript(scriptToInject, null);
-            }, 500);
+            if (WebViewFeature.isFeatureSupported(WebViewFeature.DOCUMENT_START_SCRIPT)) {
+                WebViewCompat.addDocumentStartJavaScript(getBridge().getWebView(), scriptToInject, Collections.singleton("*"));
+            }
         }
     }
 }
