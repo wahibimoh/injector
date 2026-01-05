@@ -1,6 +1,6 @@
 {
   "name": "@wahibimoh/injector",
-  "version": "7.0.4",
+  "version": "7.0.5",
   "description": "capacitor plugin to inject js on app start up",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
